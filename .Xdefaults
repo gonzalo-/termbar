@@ -1,0 +1,63 @@
+!!! Colours
+*color0: rgb:2a/3b/4d
+*color1: rgb:c4/67/6c
+*color2: rgb:66/ff/66
+*color3: rgb:ff/ff/66
+*color4: rgb:15/f4/ee
+*color5: rgb:9c/6c/d3
+*color6: rgb:4b/8f/77
+*color7: rgb:9f/a2/a6
+*color8: rgb:55/79/9c
+*color9: rgb:c4/67/6c
+*color10: rgb:66/ff/66
+*color11: rgb:ff/ff/66
+*color12: rgb:15/f4/ee
+*color13: rgb:9c/6c/d3
+*color14: rgb:4b/8f/77
+*color15: rgb:ff/ff/ff
+*color16: rgb:ff/99/66 # Base 09
+*color17: rgb:bb/64/a9 # Base 0F
+*color18: rgb:3d/56/6f # Base 01
+*color19: rgb:4b/69/88 # Base 02
+*color20: rgb:7e/90/a3 # Base 04
+*color21: rgb:d6/d7/d9 # Base 06
+
+!!! Xterm
+!!! XTerm*background: rgb:2a/3b/4d
+XTerm*background: black
+XTerm*foreground: rgb:9f/a2/a6
+XTerm*eightBitInput: false
+XTerm*loginShell: true
+XTerm*scrollBar: false
+XTerm*saveLines: 2000
+XTerm*faceName:	xft:monospace:pixelsize=16
+XTerm*internalBorder: 10
+XTerm*locale: true
+XTerm*pointerMode: 2
+XTerm*allowTitleOps: true
+XTerm*termName: xterm-256color
+
+!!! termbar
+termbar*faceName: xft:mono:pixelsize=24
+!! One Monitor !!termbar*geometry: 1920x1+0+0
+!! Two Monitors !!
+termbar*geometry: 3840x1+0+0
+termbar*internalBorder: 6
+termbar*saveLines: 0
+termbar*scrollBar: false
+termbar*title: termbar
+
+!!! Xconsole
+XConsole*internalBorder: 5
+XConsole*scrollBar: false
+XConsole*faceName: xft:monospace:pixelsize=10
+
+!!! xLock
+XLock.nice: 19
+XLock.mode: blank
+XIdle.timeout: 600
+XLock.usefirst: yes
+XLock.grabmouse: on
+XLock.lockdelay: 10
+XLock.mousemotion: on
+
