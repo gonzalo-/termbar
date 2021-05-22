@@ -1,0 +1,88 @@
+#!/bin/sh
+
+## Debug
+#set -x
+
+trap 'exec $0' HUP # Restart itself 
+trap 'tput cnorm; exit 1' INT QUIT TERM
+
+esc="\033"
+reset="${esc}[0m"
+redf="${esc}[31m"
+cyanf="${esc}[36m";
+purplef="${esc}[35m"
+pipe="${purplef}|${reset}"
+
+today()
+{
+	DATE=$(date '+%a %d %b %H:%M')
+}
+
+desktop_id()
+{
+	DESKTOP_ID=$(xprop -root 32c '\t$0' _NET_CURRENT_DESKTOP | cut -f 2)
+}
+
+cpu()
+{
+#	CPU_SPEED=$(sysctl hw.cpuspeed | cut -d "=" -f 2 | cut -d "." -f 1)
+	CPU_TEMP=$(sysctl hw.sensors.acpithinkpad0.temp0 | cut -d "=" -f 2 | cut -d "." -f 1)
+
+	CPU_SPEED=$(printf "%4s" $(sysctl hw.cpuspeed | cut -d "=" -f 2 | cut -d "." -f 1))
+}
+
+bat()
+{
+	BAT=$(apm -l)
+}
+
+bat_status()
+{
+	STATUS=$(sysctl hw.sensors.acpiac0.indicator0 | grep -c On)
+
+	if [ ${STATUS} -eq "1" ]; then
+		BAT_STATUS=$(echo Connected)
+	else
+		BAT_STATUS=$(echo ${redf}Disconnected${reset})
+	fi
+}
+
+mem()
+{
+	MEM=$(top -n | grep Memory | awk {'print $6'})
+}
+
+wifi()
+{
+	SSID=$(ifconfig | grep join | sed -e 's/.*join\(.*\)chan.*/\1/')
+}
+
+network()
+{
+	IIP=$(ifconfig iwm0 | grep inet | awk '{print $2}')
+	PIP=$(dig +short myip.opendns.com @resolver1.opendns.com | awk {'printf $1'})
+}
+
+my_name()
+{
+	YO=$(printf "ゴンザロ")
+}
+
+tput civis
+
+while true; do
+	today
+	desktop_id
+	cpu
+	mem
+	bat
+	bat_status
+	wifi
+	network
+	my_name
+	tput cup 1 0
+	printf "[${DESKTOP_ID}] ${pipe} ${cyanf}${YO}${reset} ${pipe} ${DATE} ${pipe} ${cyanf}CPU:${reset} ${CPU_SPEED} MHz (${CPU_TEMP}°) ${pipe} ${cyanf}Mem:${reset} ${MEM} "
+	printf "${pipe} ${cyanf}Bat:${reset} $BAT - ${BAT_STATUS} ${pipe} ${cyanf}SSID:${reset}${SSID}${pipe}"
+	printf " ${cyanf}IPs:${reset} ${PIP} / ${IIP} \r\r"
+        sleep 1
+done
