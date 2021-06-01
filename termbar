@@ -3,7 +3,7 @@
 ## Debug
 #set -x
 
-trap 'exec $0' HUP # Restart itself 
+trap 'exec $0' HUP # Restart itself
 trap 'tput cnorm; exit 1' INT QUIT TERM
 
 esc="\033"
