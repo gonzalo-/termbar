@@ -59,7 +59,7 @@ wifi()
 
 network()
 {
-	IIP=$(ifconfig bwfm0 | grep inet | awk '{print $2}')
+	IIP=$(ifconfig iwm0 | grep inet | awk '{print $2}')
 	PIP=$(dig +short myip.opendns.com @resolver1.opendns.com | awk {'printf $1'})
 }
 
