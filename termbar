@@ -83,6 +83,6 @@ while true; do
 	tput cup 1 0
 	printf "[${DESKTOP_ID}] ${pipe} ${cyanf}${YO}${reset} ${pipe} ${DATE} ${pipe} ${cyanf}CPU:${reset} ${CPU_SPEED} MHz (${CPU_TEMP}°) ${pipe} ${cyanf}Mem:${reset} ${MEM} "
 	printf "${pipe} ${cyanf}Bat:${reset} $BAT - ${BAT_STATUS} ${pipe} ${cyanf}SSID:${reset}${SSID}${pipe}"
-	printf " ${cyanf}IPs:${reset} ${PIP} / ${IIP} \r\r"
+	printf " ${cyanf}IPs:${reset} ${PIP} / ${IIP}" echo "\e[1A"
         sleep 1
 done
